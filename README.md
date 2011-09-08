@@ -27,36 +27,37 @@ Simply add the following line above the declaration of the AppController class :
 
 You can now call from anywhere :
 
-Url::plugin_controller_prefix_action($args);
+	Url::plugin_controller_prefix_action($args);
 
 ## Examples
 
-	// /posts
+	/posts
 	echo $this->Html->url(array(
 		'controller' => 'posts',
 		'action' => 'index'
 	));
 	
-	// Becomes
+	Becomes:
 	echo Url::posts_index();
-	// Or even better
+	
+	Or even better:
 	echo Url::posts();
 	
 ---
 
-	// /posts/download/1
+	/posts/download/1
 	echo $this->Html->url(array(
 		'controller' => 'posts',
 		'action' => 'download',
 		$post['Post']['id']
 	));
 	
-	// Becomes
+	Becomes:
 	echo Url::posts_download($post['Post']['id']);
 
 ---
 
-	// /posts/view/1/number-one-slug
+	/posts/view/1/number-one-slug
 	echo $this->Html->url(array(
 		'controller' => 'posts',
 		'action' => 'view',
@@ -64,7 +65,7 @@ Url::plugin_controller_prefix_action($args);
 		'slug' => $post['Post']['slug']
 	));
 	
-	// Becomes
+	Becomes:
 	echo Url::posts_view(array(
 		'id' => $post['Post']['id'],
 		'slug' => $post['Post']['slug']
@@ -72,7 +73,7 @@ Url::plugin_controller_prefix_action($args);
 	
 ---
 
-	// /admin/posts/edit/1
+	/admin/posts/edit/1
 	echo $this->Html->url(array(
 		'controller' => 'posts',
 		'action' => 'edit',
@@ -80,12 +81,12 @@ Url::plugin_controller_prefix_action($args);
 		$post['Post']['id']
 	));
 	
-	// Becomes
+	Becomes:
 	echo Url::posts_admin_edit($post['Post']['id']);
 
 ---
 
-	// /my_plugin/beers/drink/qty:1
+	/my_plugin/beers/drink/qty:1
 	echo $this->Html->url(array(
 		'plugin' => 'my_plugin',
 		'controller' => 'beers',
@@ -93,12 +94,12 @@ Url::plugin_controller_prefix_action($args);
 		'qty' => 1
 	));
 	
-	// Becomes
+	Becomes:
 	echo Url::my_plugin_beers_drink(array('qty' => 1));
 	
 ---
 
-	// /customer/my_plugin/beers/buy/1
+	/customer/my_plugin/beers/buy/1
 	echo $this->Html->url(array(
 		'plugin' => 'my_plugin',
 		'controller' => 'beers',
@@ -107,5 +108,5 @@ Url::plugin_controller_prefix_action($args);
 		$beer['Beer']['id']
 	));
 	
-	// Becomes
+	Becomes:
 	echo Url::my_plugin_beers_customer_buy($beer['Beer']['id']);
