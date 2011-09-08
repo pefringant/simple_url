@@ -103,7 +103,7 @@ You can now call from anywhere :
 	echo $this->Html->url(array(
 		'plugin' => 'my_plugin',
 		'controller' => 'beers',
-		'action' => 'drink',
+		'action' => 'buy',
 		'customer' => true,
 		$beer['Beer']['id']
 	));
