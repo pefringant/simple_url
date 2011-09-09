@@ -21,6 +21,7 @@ class Url {
 		
 		// 1. Plugin ?
 		$plugins = App::objects('plugin');
+		usort($plugins, array('Url', 'sortByLengthDesc'));
 
 		foreach ($plugins as $p) {
 			if (strpos($camelCasedName, $p) === 0) {
@@ -44,6 +45,7 @@ class Url {
 		
 		if (!$controllers = Cache::read($cache_key)) {
 			$controllers = App::objects('controller', $path, false);
+			usort($controllers, array('Url', 'sortByLengthDesc'));
 			Cache::write($cache_key, $controllers);
 		}
 
@@ -59,6 +61,7 @@ class Url {
 		
 		// 3. Prefix ?
 		$prefixes = Configure::read('Routing.prefixes');
+		usort($prefixes, array('Url', 'sortByLengthDesc'));
 		
 		foreach ($prefixes as $p) {
 			if (strpos($underscored_name, $p) === 0) {
@@ -92,5 +95,15 @@ class Url {
 		}
 
 		return Router::url($params);
+	}
+	
+	/**
+	 * Sorts an array by the descending length of it's values
+	 * 
+	 * @param string $a First string
+	 * @param string $b Second string
+	 */
+	public static function sortByLengthDesc($a, $b){
+	    return strlen($b) - strlen($a);
 	}
 }
